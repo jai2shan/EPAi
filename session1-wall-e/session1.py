@@ -57,6 +57,11 @@ class Rectangle:
             return self.area() < other.area()
         else:
             raise NotImplementedError("Comparison with non Rectangle Not Implemented")
+    def __ge__(self, other):
+        if isinstance(other, Rectangle) and isinstance(self, Rectangle):
+            return self.area() >= other.area()
+        else:
+            raise NotImplementedError("Comparison with non Rectangle Not Implemented")
             
     def __eq__(self, other):
         if isinstance(other, Rectangle) and isinstance(self, Rectangle):

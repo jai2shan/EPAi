@@ -5,7 +5,7 @@ def fourspace(module_name):
     r''' Returns pass if used four spaces for each level of syntactically \
     significant indenting.'''
     lines = inspect.getsource(module_name)
-    spaces = re.findall('\n(.+?)[a-zA-Z0-9]', lines)
+    spaces = re.findall('\n(.+?)@[a-zA-Z0-9]', lines)
     for space in spaces:
         if len(space) % 4 > 0 and len(space) != 1: #1 in case new fn or cls start after \n
             print(space)

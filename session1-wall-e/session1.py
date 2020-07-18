@@ -1,14 +1,14 @@
-def myFunc():
+def myfunc():
     string='Cppsecrets'
     n=len(string)
     arr=[]
     for i in range(n):
-      for j in range(i+1,n+1):
-          a=string[i:j]
-          arr.append(a)
-	print(arr)
+        for j in range(i+1,n+1):
+            a=string[i:j]
+            arr.append(a)
+    print(arr)
 
-def my_Func():
+def my_func():
     pass
 
 class Rectangle:
@@ -23,14 +23,48 @@ class Rectangle:
     def __init__(self, width, height):
         self.width = width #properties
         self.height = height
+		
+    @property
+    def width(self):
+        return self._width
+        
+    @width.setter
+    def width(self, width):
+        if width <=0:
+            raise ValueError("Width must be positive")
+        else:            
+            self._width = width
+    
+    @property
+    def height(self):
+        return self._height
+
+    @height.setter
+    def height(self, height):
+        if height <=0:
+            raise ValueError("Height must be positive")
+        else:
+            self._height = height       
 
     def area(self): #method
-        return self.width
+        return self._width*self._height
     
     def perimeter(self):
-        return (self.width + self.height)
+        return 2*(self.width + self.height)
     
     def __lt__(self, other):
-        if isinstance(other, Rectangle):
+        if isinstance(other, Rectangle) and isinstance(self, Rectangle):
+            return self.area() < other.area()
+        else:
+            raise NotImplementedError("Comparison with non Rectangle Not Implemented")
+            
+    def __eq__(self, other):
+        if isinstance(other, Rectangle) and isinstance(self, Rectangle):
             return self.area() == other.area()
-        
+        else:
+            raise NotImplementedError("Comparison with non Rectangle Not Implemented")            
+ 
+    def __str__(self):
+        return 'Rectangle: width={0}, height={1}'.format(self._width, self._height)
+    def __repr__(self):
+        return 'Rectangle({0}, {1})'.format(self._width, self._height)
